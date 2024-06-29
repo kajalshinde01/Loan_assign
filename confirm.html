@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirm page</title>
+  <link  rel="stylesheet" href="/confirm.css">
+</head>
+<body>
+  <div id="confirmationMessage"></div>
+<div id="otpForm">
+    <label for="otp">Enter OTP:</label>
+    <input type="text" id="otp" name="otp">
+    <button id="validateOtp">Validate OTP</button>
+    <span id="otpError" class="error"></span>
+</div>
+
+<script>
+const fullName = localStorage.getItem('fullName');
+const email = localStorage.getItem('email');
+const firstName = fullName.split(' ')[0];
+
+// create 4-digit random number
+const otp = Math.floor(1000 + Math.random() * 9000);
+console.log("Generated OTP:", otp);
+
+document.getElementById('confirmationMessage').innerHTML=  `
+    Dear ${firstName},<br>
+    Thank you for your inquiry.<br/> 
+      A 4-digit verification number has been sent to your email: ${email}.<br/> 
+    please enter it in the following box and submit for confirmation:`;
+
+    let attempts = 0;
+    document.getElementById('validateOtp').addEventListener('click', ()=> {
+    const enteredOtp = document.getElementById('otp').value;
+    
+    if (enteredOtp == otp) {
+        document.getElementById('otpForm').innerHTML = "Validation Completed Successfully!";
+        // Redirect to Pixel6 home page 
+       window.location.href = 'https://www.pixel6.co/';
+    } else {
+        attempts++;
+        document.getElementById('otpError').textContent = "Invalid OTP. Please try again.";
+        if (attempts >= 3) {
+            document.getElementById('otpForm').innerHTML = "Validation Failed!";
+            // Redirect to 404 page 
+             window.location.href = 'https://www.pixel6.co/404';
+        }
+    }
+});
+</script>
+
+</body>
+</html>

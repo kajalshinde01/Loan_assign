@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loan Form</title>
+  <link rel="stylesheet"  href="./index.css"/>
+  
+  
+</head>
+<body>
+  
+  <div class="container">
+  <form id="loanForm">
+   <p><label for="fullName">Full Name:</label></p> 
+  
+    <input type="text" id="fullName" name="fullName">
+    <span id="nameError" class="error"></span><br><br>
+    
+    <p><label for="email">Email ID:</label></p>
+    <input type="text" id="email" name="email">
+    <span id="emailError" class="error"></span><br><br>
+    
+    <p><label for="pan">PAN Card:</label></p>
+    <input type="text" id="pan" name="pan" >
+    <span id="panError" class="error"></span><br><br>
+    
+    <p><label for="loanAmount">Loan Amount:</label></p>
+    <input type="text" id="loanAmount" name="loanAmount" oninput="convertAmountToWords()">
+    <span id="amountInWords"></span>
+    <span id="amountError" class="error"></span><br><br>
+    
+    <a href="confirm.html"><button type="submit" >Submit</button></a>
+  </div>
+  </form>
+<script src="script.js"></script>
+</body>
+</html>
